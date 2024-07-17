@@ -2,9 +2,6 @@
 import { useRoutes, BrowserRouter } from "react-router-dom";
 import Register from "./Components/Register";
 import PhotoCam from "./Components/PhotoCam";
-
-
-
 import "./App.css";
 
 const AppRoutes = () => {
