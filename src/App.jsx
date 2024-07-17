@@ -6,7 +6,7 @@ import "./App.css";
 
 const AppRoutes = () => {
   const routes = useRoutes([
-    { path: "/registrate", element: <Register/> },
+    { path: "/", element: <Register/> },
     { path: "/Photo", element: <PhotoCam/> },
  
    
