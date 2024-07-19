@@ -8,16 +8,16 @@ const Register = () => {
 
   useEffect(() => {
     // Check if the page is reloaded
-    if (sessionStorage.getItem('isReloaded')) {
+    if (localStorage.getItem('isReloaded')) {
       navigate("/");
     } else {
       // Set flag for reload
-      sessionStorage.setItem('isReloaded', true);
+      localStorage.setItem('isReloaded', true);
     }
 
     // Clean up flag on component unmount
     return () => {
-      sessionStorage.removeItem('isReloaded');
+      localStorage.removeItem('isReloaded');
     };
   }, [navigate]);
 
