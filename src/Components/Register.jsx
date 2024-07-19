@@ -1,30 +1,43 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const capturedImage = location.state?.image || "";
+  console.log("Received captured image:", capturedImage);
 
   useEffect(() => {
-    // Check if the page is reloaded
     if (localStorage.getItem('isReloaded')) {
       navigate("/");
     } else {
-      // Set flag for reload
       localStorage.setItem('isReloaded', true);
     }
 
-    // Clean up flag on component unmount
     return () => {
       localStorage.removeItem('isReloaded');
     };
   }, [navigate]);
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     console.log("Correo:", email);
     console.log("Nombre:", name);
-    navigate("/photo");
+
+    if (capturedImage) {
+      await axios.post("https://devapi.evius.co/api/correos-mocion", {
+        email: email,
+        html: `<img src="${capturedImage}" alt="Captura de cámara"/>`,
+        subject: "PhotoOportunity",
+        by: "PhotoOportunity RD📸",
+      });
+      console.log("foto", capturedImage);
+      console.log("Email sent");
+    }
+
+    navigate("/");
   };
 
   return (
@@ -56,7 +69,7 @@ const Register = () => {
             onClick={handleRegister}
             className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
           >
-            Register
+            Send pic
           </button>
         </div>
       </form>

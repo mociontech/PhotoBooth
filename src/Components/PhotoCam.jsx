@@ -1,26 +1,41 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Webcam from "react-webcam";
-import { useNavigate } from "react-router-dom"; // Importar useNavigate
+import { useNavigate } from "react-router-dom";
+import html2canvas from "html2canvas";
+import { storage } from "../firebase/config";
+import { ref, uploadString, getDownloadURL } from "firebase/storage";
 
 const PhotoCam = () => {
   const webcamRef = useRef(null);
   const [timeLeft, setTimeLeft] = useState(5);
   const [isCameraReady, setIsCameraReady] = useState(false);
-  const [capturedImage, setCapturedImage] = useState(null); // Estado para la imagen capturada
-   const navigate = useNavigate(); // Inicializar useNavigate
+  const [capturedImage, setCapturedImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+  const navigate = useNavigate();
+  const cameraRef = useRef(null);
+
+  const uploadToFirebase = async (base64Image) => {
+    try {
+      const storageRef = ref(storage, `images/${Date.now()}.jpg`);
+      await uploadString(storageRef, base64Image, "data_url");
+      const url = await getDownloadURL(storageRef);
+      setImageUrl(url);
+      console.log("Image URL:", url);
+      return url;
+    } catch (error) {
+      console.error("Error uploading image to Firebase", error);
+    }
+  };
 
   const capture = useCallback(() => {
-    if (webcamRef.current) {
-      const imageSrc = webcamRef.current.getScreenshot();
-      setCapturedImage(imageSrc); // Guardar la imagen capturada
-      console.log(imageSrc); // Aquí puedes manejar la imagen capturada
-
-      // Mostrar la imagen capturada por 4 segundos antes de redirigir
-      // setTimeout(() => {
-      //   navigate('/register'); // Redirigir a la ruta /register
-      // }, 4000);
+    if (cameraRef.current) {
+      html2canvas(cameraRef.current).then((canvas) => {
+        const finalImage = canvas.toDataURL('image/jpeg');
+        setCapturedImage(finalImage);
+        uploadToFirebase(finalImage);
+      });
     }
-  }, [webcamRef]);
+  }, [cameraRef]);
 
   useEffect(() => {
     if (isCameraReady && timeLeft === 0) {
@@ -38,10 +53,8 @@ const PhotoCam = () => {
       try {
         await navigator.mediaDevices.getUserMedia({ video: true });
         setIsCameraReady(true);
-        console.log("La cámara está activa");
       } catch (error) {
         setIsCameraReady(false);
-        console.log("La cámara NO está activa", error);
       }
     };
 
@@ -50,12 +63,13 @@ const PhotoCam = () => {
 
   const retakePhoto = () => {
     setCapturedImage(null);
+    setImageUrl(null);
     setTimeLeft(5);
   };
 
-  const handlerNext = ()=>{
-    navigate('/register')
-  }
+  const handlerNext = () => {
+    navigate("/register", { state: { image: imageUrl } });
+  };
 
   return (
     <div className="relative flex items-center justify-center min-h-screen">
@@ -74,12 +88,14 @@ const PhotoCam = () => {
         {isCameraReady && !capturedImage && (
           <>
             <h1 className="text-2xl font-bold mb-4">Photo</h1>
-            <Webcam
-              audio={false}
-              ref={webcamRef}
-              screenshotFormat="image/jpeg"
-              className="mb-4"
-            />
+            <div ref={cameraRef}>
+              <Webcam
+                audio={false}
+                ref={webcamRef}
+                screenshotFormat="image/jpeg"
+                className="mb-4"
+              />
+            </div>
           </>
         )}
         {capturedImage && (
@@ -101,7 +117,7 @@ const PhotoCam = () => {
           </button>
           <button
             onClick={handlerNext}
-            className="py-2 px-4 border  border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 "
+            className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 "
           >
             Next
           </button>
