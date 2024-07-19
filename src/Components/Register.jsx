@@ -1,10 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if the page is reloaded
+    if (sessionStorage.getItem('isReloaded')) {
+      navigate("/");
+    } else {
+      // Set flag for reload
+      sessionStorage.setItem('isReloaded', true);
+    }
+
+    // Clean up flag on component unmount
+    return () => {
+      sessionStorage.removeItem('isReloaded');
+    };
+  }, [navigate]);
 
   const handleRegister = () => {
     console.log("Correo:", email);
