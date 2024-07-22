@@ -8,6 +8,7 @@ import marcoImage from "../images/Marco-digital-2 1.png";
 import background from "../images/background.png"
 
 
+
 const PhotoCam = () => {
   const webcamRef = useRef(null);
   const [timeLeft, setTimeLeft] = useState(5);
