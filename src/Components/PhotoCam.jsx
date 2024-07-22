@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import html2canvas from "html2canvas";
 import { storage } from "../firebase/config";
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
+import marcoImage from "../images/Marco-digital-2 1.png"; 
+import background from "../images/background.png"
+
 
 const PhotoCam = () => {
   const webcamRef = useRef(null);
@@ -72,28 +75,36 @@ const PhotoCam = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen">
+    <div className="relative w-screen h-screen">
       {!isCameraReady && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-80">
+          <div
+          className="absolute inset-0 flex items-center justify-center bg-cover bg-center"
+          style={{ backgroundImage: `url(${background})` }}
+        >
           <div className="text-xl font-bold text-gray-700 bg-gray-200 p-4 rounded-md shadow-md">
             Loading...
           </div>
         </div>
       )}
       <div
-        className={`flex flex-col items-center p-6 bg-white border rounded-md shadow-md ${
+        className={`relative flex flex-col items-center p-6 w-full h-full border rounded-md shadow-md ${
           !isCameraReady ? "opacity-0" : ""
         }`}
+        ref={cameraRef}
       >
         {isCameraReady && !capturedImage && (
           <>
-            <h1 className="text-2xl font-bold mb-4">Photo</h1>
-            <div ref={cameraRef}>
+            <div className="relative w-full h-full">
               <Webcam
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
-                className="mb-4"
+                className="absolute top-0 left-0 w-full h-full object-cover"
+              />
+              <img
+                src={marcoImage}
+                alt="Marco"
+                className="absolute top-0 left-0 w-full h-full object-cover"
               />
             </div>
           </>
@@ -117,7 +128,7 @@ const PhotoCam = () => {
           </button>
           <button
             onClick={handlerNext}
-            className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 "
+            className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
           >
             Next
           </button>

@@ -33,23 +33,17 @@ const WelcomePage = () => {
         <div className="absolute mt-[-20px] w-24">
           <img src={numbers} alt="conteo" />
         </div>
-        <div className="absolute mt-[-270px] ml-60 w-24">
+        <div className="absolute mt-[-275px] ml-60 w-24">
           <img src={camera} alt="camera" />
         </div>
-        <div className="absolute mt-[80px] w-80">
+        <div className="absolute mt-[95px] w-80">
           <img src={parrafo} alt="parrafo" />
         </div>
         <div className="text-center text-white text-xl font-bold">
-          <button className="relative w-80 mt-[280px]"  onClick={handlerClic} >
+          <button className="relative w-80 mt-[300px]"  onClick={handlerClic} >
           <img src={button} alt="button" className="w-full"  />
           <span className="absolute inset-0 flex items-center justify-center">Comenzar</span>
           </button>
-          {/* <button
-            onClick={handlerClic}
-            className="px-4 py-2 bg-blue-500 text-white rounded"
-          >
-            Next
-          </button> */}
         </div>
       </div>
     </div>
