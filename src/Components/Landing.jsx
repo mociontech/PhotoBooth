@@ -6,7 +6,8 @@ import rayo2 from "../images/rayo2.png";
 import numbers from "../images/¡3,2,1..!.png";
 import parrafo from "../images/parrafo.png";
 import button from "../images/Rectangle 4.png"
-//import begin from "../images/Comenzar.png"
+import camera from "../images/Cámara 2.png"
+
 const WelcomePage = () => {
    const navigate = useNavigate();
 
@@ -31,6 +32,9 @@ const WelcomePage = () => {
         </div>
         <div className="absolute mt-[-20px] w-24">
           <img src={numbers} alt="conteo" />
+        </div>
+        <div className="absolute mt-[-270px] ml-60 w-24">
+          <img src={camera} alt="camera" />
         </div>
         <div className="absolute mt-[80px] w-80">
           <img src={parrafo} alt="parrafo" />
