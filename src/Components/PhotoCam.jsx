@@ -4,10 +4,9 @@ import { useNavigate } from "react-router-dom";
 import html2canvas from "html2canvas";
 import { storage } from "../firebase/config";
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
-import marcoImage from "../images/Marco-digital-2 1.png"; 
-import background from "../images/background.png"
-
-
+import marcoImage from "../images/Marco-digital-2 1.png";
+import background from "../images/background.png";
+import retake from "../images/Group 218.png";
 
 const PhotoCam = () => {
   const webcamRef = useRef(null);
@@ -34,7 +33,7 @@ const PhotoCam = () => {
   const capture = useCallback(() => {
     if (cameraRef.current) {
       html2canvas(cameraRef.current).then((canvas) => {
-        const finalImage = canvas.toDataURL('image/jpeg');
+        const finalImage = canvas.toDataURL("image/jpeg");
         setCapturedImage(finalImage);
         uploadToFirebase(finalImage);
       });
@@ -78,7 +77,7 @@ const PhotoCam = () => {
   return (
     <div className="relative w-screen h-screen">
       {!isCameraReady && (
-          <div
+        <div
           className="absolute inset-0 flex items-center justify-center bg-cover bg-center"
           style={{ backgroundImage: `url(${background})` }}
         >
@@ -111,28 +110,28 @@ const PhotoCam = () => {
           </>
         )}
         {capturedImage && (
-          <div className="flex flex-col items-center">
-            <img src={capturedImage} alt="Captura" className="mb-4" />
-          </div>
-        )}
+  <div className="relative flex flex-col items-center">
+    <img src={capturedImage} alt="Captura" className="mb-4 w-full h-full object-cover" />
+    <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 flex justify-between w-1/2 max-w-md space-x-4 ">
+      <img
+        src={retake}
+        alt="Recap"
+        className="w-16 cursor-pointer"
+        onClick={retakePhoto}
+      />
+      <button
+        onClick={handlerNext}
+        className="px-4 py-2 rounded-md shadow-sm text-sm font-medium text-white bg-green-600"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+)}
         <div>
           {timeLeft > 0 && (
             <div className="text-3xl font-bold mb-4">{timeLeft}</div>
           )}
-        </div>
-        <div>
-          <button
-            onClick={retakePhoto}
-            className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 mr-4"
-          >
-            Retake pic
-          </button>
-          <button
-            onClick={handlerNext}
-            className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-          >
-            Next
-          </button>
         </div>
       </div>
     </div>
