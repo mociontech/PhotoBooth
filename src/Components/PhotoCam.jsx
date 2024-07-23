@@ -122,7 +122,7 @@ const PhotoCam = () => {
               alt="Captura"
               className="mb-4 w-full h-full object-cover"
             />
-            <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 flex justify-center w-1/2 max-w-md space-x-4">
+            <div className="absolute bottom-28  left-1/2 transform -translate-x-1/2 flex justify-center w-1/2 max-w-md space-x-4">
               <div className="flex flex-col items-center">
                 <img
                   src={retake}
