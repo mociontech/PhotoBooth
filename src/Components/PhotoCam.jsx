@@ -11,7 +11,7 @@ import next from "../images/Group 194.png";
 
 const PhotoCam = () => {
   const webcamRef = useRef(null);
-  const [timeLeft, setTimeLeft] = useState(5);
+  const [timeLeft, setTimeLeft] = useState(100);
   const [isCameraReady, setIsCameraReady] = useState(false);
   const [capturedImage, setCapturedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -88,14 +88,14 @@ const PhotoCam = () => {
         </div>
       )}
       <div
-        className={`relative flex flex-col items-center p-6 w-full h-full border rounded-md shadow-md ${
+        className={`relative flex flex-col items-center  w-screen h-screen   border rounded-md shadow-md ${
           !isCameraReady ? "opacity-0" : ""
         }`}
         ref={cameraRef}
       >
         {isCameraReady && !capturedImage && (
           <>
-            <div className="relative w-full h-full">
+            <div className="relative  w-screen h-screen">
               <Webcam
                 audio={false}
                 ref={webcamRef}
@@ -116,11 +116,11 @@ const PhotoCam = () => {
           </>
         )}
         {capturedImage && (
-          <div className="relative flex flex-col items-center">
+          <div className="relative flex flex-col  items-center top-0 left-0 w-full h-full object-cover">
             <img
               src={capturedImage}
               alt="Captura"
-              className="mb-4 w-full h-full object-cover"
+              className=" w-full h-full object-cover"
             />
             <div className="absolute bottom-28  left-1/2 transform -translate-x-1/2 flex justify-center w-1/2 max-w-md space-x-4">
               <div className="flex flex-col items-center">
