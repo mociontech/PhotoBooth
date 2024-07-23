@@ -7,6 +7,7 @@ import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import marcoImage from "../images/Marco-digital-2 1.png";
 import background from "../images/background.png";
 import retake from "../images/Group 218.png";
+import next from "../images/Group 194.png";
 
 const PhotoCam = () => {
   const webcamRef = useRef(null);
@@ -106,33 +107,43 @@ const PhotoCam = () => {
                 alt="Marco"
                 className="absolute top-0 left-0 w-full h-full object-cover"
               />
+              {timeLeft > 0 && (
+                <div className="absolute top-[150px] left-1/2 transform -translate-x-1/2 text-3xl font-bold text-white">
+                  {timeLeft}
+                </div>
+              )}
             </div>
           </>
         )}
         {capturedImage && (
-  <div className="relative flex flex-col items-center">
-    <img src={capturedImage} alt="Captura" className="mb-4 w-full h-full object-cover" />
-    <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 flex justify-between w-1/2 max-w-md space-x-4 ">
-      <img
-        src={retake}
-        alt="Recap"
-        className="w-16 cursor-pointer"
-        onClick={retakePhoto}
-      />
-      <button
-        onClick={handlerNext}
-        className="px-4 py-2 rounded-md shadow-sm text-sm font-medium text-white bg-green-600"
-      >
-        Next
-      </button>
-    </div>
-  </div>
-)}
-        <div>
-          {timeLeft > 0 && (
-            <div className="text-3xl font-bold mb-4">{timeLeft}</div>
-          )}
-        </div>
+          <div className="relative flex flex-col items-center">
+            <img
+              src={capturedImage}
+              alt="Captura"
+              className="mb-4 w-full h-full object-cover"
+            />
+            <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 flex justify-center w-1/2 max-w-md space-x-4">
+              <div className="flex flex-col items-center">
+                <img
+                  src={retake}
+                  alt="Recap"
+                  className="w-16 cursor-pointer"
+                  onClick={retakePhoto}
+                />
+                <span className=" text-sm  text-white">Repetir</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <img
+                  src={next}
+                  alt="Recap"
+                  className="w-16 cursor-pointer"
+                  onClick={handlerNext}
+                />
+                <span className="text-sm  text-white">Siguiente</span>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
