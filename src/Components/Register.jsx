@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import registerback from "../images/Group 221.png";
+
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -41,18 +43,8 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <form>
-        <div>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Correo"
-            className="border mb-4"
-          />
-        </div>
+    <div className="flex items-center justify-center min-h-screen bg-cover bg-center" style={{ backgroundImage: `url(${registerback})` }}>
+      <form className=" p-8 rounded-lg shadow-md w-full max-w-md mt-12">
         <div>
           <input
             type="text"
@@ -60,17 +52,27 @@ const Register = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Nombre"
-            className="border mb-4"
+            className="border mb-4 w-full px-4 py-2 rounded-xl  bg-white bg-opacity-10 "
           />
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Correo"
+            className="border mb-4 w-full px-4 py-2 rounded-xl bg-white bg-opacity-10"
+          /> 
         </div>
+        <div>
         <div className="flex justify-center">
           <button
             type="button"
             onClick={handleRegister}
-            className="py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            className="py-2 px-4 border border-transparent rounded-xl shadow-sm text-xl  w-80 font-bold text-white bg-[#06ADBF]"
           >
-            Send pic
+            Enviar
           </button>
+        </div>
         </div>
       </form>
     </div>
