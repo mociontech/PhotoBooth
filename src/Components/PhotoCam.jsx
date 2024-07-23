@@ -11,7 +11,7 @@ import next from "../images/Group 194.png";
 
 const PhotoCam = () => {
   const webcamRef = useRef(null);
-  const [timeLeft, setTimeLeft] = useState(100);
+  const [timeLeft, setTimeLeft] = useState(5);
   const [isCameraReady, setIsCameraReady] = useState(false);
   const [capturedImage, setCapturedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -82,30 +82,30 @@ const PhotoCam = () => {
           className="absolute inset-0 flex items-center justify-center bg-cover bg-center"
           style={{ backgroundImage: `url(${background})` }}
         >
-          <div className="text-xl font-bold text-gray-700 bg-gray-200 p-4 rounded-md shadow-md">
+          <div className="text-xl font-bold text-gray-700 bg-gray-200  rounded-md shadow-md">
             Loading...
           </div>
         </div>
       )}
       <div
-        className={`relative flex flex-col items-center  w-screen h-screen   border rounded-md shadow-md ${
+        className={`relative flex flex-col  border rounded-md shadow-md  ${
           !isCameraReady ? "opacity-0" : ""
         }`}
         ref={cameraRef}
       >
         {isCameraReady && !capturedImage && (
           <>
-            <div className="relative  w-screen h-screen">
+            <div className=" w-screen h-screen">
               <Webcam
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
-                className="absolute top-0 left-0 w-full h-full object-cover"
+                className="absolute top-0 left-0  w-screen h-screen object-cover"
               />
               <img
                 src={marcoImage}
                 alt="Marco"
-                className="absolute top-0 left-0 w-full h-full object-cover"
+                className="absolute top-0 left-0  w-screen h-screen object-cover"
               />
               {timeLeft > 0 && (
                 <div className="absolute top-[150px] left-1/2 transform -translate-x-1/2 text-3xl font-bold text-white">
