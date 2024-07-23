@@ -14,6 +14,7 @@ import dos from "../images/2.png";
 import tres from "../images/3.png";
 import cuatro from "../images/4.png";
 import cinco from "../images/5.png";
+import preparate from "../images/¡PREPÁRATE PARA LA FOTO!.png";
 
 // Create a mapping from numbers to image sources
 const numberToImage = {
@@ -124,7 +125,7 @@ const PhotoCam = () => {
       >
         {isCameraReady && !capturedImage && (
           <>
-            <div className="w-screen h-screen">
+            <div className="relative w-screen h-screen">
               <Webcam
                 audio={false}
                 ref={webcamRef}
@@ -137,15 +138,24 @@ const PhotoCam = () => {
                 className="absolute top-0 left-0 w-screen h-screen object-cover"
               />
               {timeLeft > 0 && (
-                <div className="absolute top-[150px] left-1/2 transform -translate-x-1/2 flex">
-                  {Array.from(String(timeLeft)).map((digit, index) => (
+                <div className="absolute top-[100px] left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+                  {timeLeft > 0 && (
                     <img
-                      key={index}
-                      src={numberToImage[digit]}
-                      alt={`Countdown ${digit}`}
-                      className="w-20 h-20 object-cover"
+                      src={preparate}
+                      alt="Preparación"
+                      className="w-64 h-auto"
                     />
-                  ))}
+                  )}
+                  <div className="flex">
+                    {Array.from(String(timeLeft)).map((digit, index) => (
+                      <img
+                        key={index}
+                        src={numberToImage[digit]}
+                        alt={`Countdown ${digit}`}
+                        className="w-32 h-32 object-cover mt-36"
+                      />
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
