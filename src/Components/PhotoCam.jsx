@@ -15,6 +15,7 @@ import tres from "../images/3.png";
 import cuatro from "../images/4.png";
 import cinco from "../images/5.png";
 import preparate from "../images/¡PREPÁRATE PARA LA FOTO!.png";
+import loading from "../images/loading.gif"
 
 // Create a mapping from numbers to image sources
 const numberToImage = {
@@ -112,9 +113,11 @@ const PhotoCam = () => {
           className="absolute inset-0 flex items-center justify-center bg-cover bg-center"
           style={{ backgroundImage: `url(${background})` }}
         >
-          <div className="text-xl font-bold text-gray-700 bg-gray-200 rounded-md shadow-md">
-            Loading...
-          </div>
+          <img
+                src={loading}
+                alt="Marco"
+                className="w-28 h-28"
+              />
         </div>
       )}
       <div
