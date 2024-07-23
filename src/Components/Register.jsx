@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import registerback from "../images/Group 221.png";
-
+import icononame from "../images/Group 178.png";
+import iconemail from "../images/icon.png";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -13,14 +14,14 @@ const Register = () => {
   console.log("Received captured image:", capturedImage);
 
   useEffect(() => {
-    if (localStorage.getItem('isReloaded')) {
+    if (localStorage.getItem("isReloaded")) {
       navigate("/");
     } else {
-      localStorage.setItem('isReloaded', true);
+      localStorage.setItem("isReloaded", true);
     }
 
     return () => {
-      localStorage.removeItem('isReloaded');
+      localStorage.removeItem("isReloaded");
     };
   }, [navigate]);
 
@@ -43,36 +44,43 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-cover bg-center" style={{ backgroundImage: `url(${registerback})` }}>
-      <form className=" p-8 rounded-lg shadow-md w-full max-w-md mt-12">
+    <div
+      className="flex items-center justify-center min-h-screen bg-cover bg-center"
+      style={{ backgroundImage: `url(${registerback})` }}
+    >
+      <form className="p-8 rounded-lg shadow-md w-full max-w-md mt-12">
         <div>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Nombre"
-            className="border mb-4 w-full px-4 py-2 rounded-xl  bg-white bg-opacity-10 "
-          />
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Correo"
-            className="border mb-4 w-full px-4 py-2 rounded-xl bg-white bg-opacity-10"
-          /> 
+          <div className="flex items-center border mb-4 w-full px-4 py-2 rounded-xl bg-white bg-opacity-10">
+            <img src={icononame} alt="Icono Nombre" className="w-5 h-5 mr-2" />
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Nombre"
+              className="w-full bg-transparent border-none focus:outline-none"
+            />
+          </div>
+          <div className="flex items-center border mb-4 w-full px-4 py-2 rounded-xl bg-white bg-opacity-10">
+            <img src={iconemail} alt="Icono Correo" className="w-5 h-5 mr-2" />
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Correo"
+              className="w-full bg-transparent border-none focus:outline-none"
+            />
+          </div>
         </div>
-        <div>
         <div className="flex justify-center">
           <button
             type="button"
             onClick={handleRegister}
-            className="py-2 px-4 border border-transparent rounded-xl shadow-sm text-xl  w-80 font-bold text-white bg-[#06ADBF]"
+            className="py-2 px-4 border border-transparent rounded-xl shadow-sm text-xl w-80 font-bold text-white bg-[#06ADBF]"
           >
             Enviar
           </button>
-        </div>
         </div>
       </form>
     </div>
