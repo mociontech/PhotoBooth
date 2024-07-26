@@ -34,7 +34,7 @@ const Register = () => {
         email: email,
         html: `<img src="${capturedImage}" alt="Captura de cámara"/>`,
         subject: "PhotoOportunity",
-        by: "PhotoOportunity RD📸",
+        by: "PhotoOportunity RD",
       });
       console.log("foto", capturedImage);
       console.log("Email sent");
