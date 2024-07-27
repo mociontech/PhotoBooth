@@ -42,7 +42,7 @@ const Register = () => {
 
     const newUniqueId = Math.random().toString(36).substring(7);
     const newHashId = 'RD-Photo-Booth-' + newUniqueId;
-    const url = `https://mocionws.info/dbController.php?method=newRecordExclude&table=leads&name=${name}&email=${email}&uniqueId=${newHashId}&experience=1`;
+    const url = `https://mocionws.info/dbController.php?method=newRecordExclude&table=leads&name=${name}&email=${email}&uniqueId=${newHashId}&experience=2`;
     await axios.get(url);
 
     navigate("/");
