@@ -58,7 +58,9 @@ const Register = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Nombre"
-              className="w-full bg-transparent border-none focus:outline-none"
+              className={`w-full bg-transparent border-none focus:outline-none ${
+                name ? "text-white" : ""
+              }`}
             />
           </div>
           <div className="flex items-center border mb-4 w-full px-4 py-2 rounded-xl bg-white bg-opacity-10">
@@ -69,7 +71,9 @@ const Register = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Correo"
-              className="w-full bg-transparent border-none focus:outline-none"
+              className={`w-full bg-transparent border-none focus:outline-none ${
+                email ? "text-white" : ""
+              }`}
             />
           </div>
         </div>

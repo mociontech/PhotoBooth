@@ -133,7 +133,7 @@ const PhotoCam = () => {
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
-                className="absolute top-0 left-0 w-screen h-screen object-cover"
+                className="absolute top-0 left-0 w-screen h-screen object-cover transform scale-x-[-1]"
               />
               <img
                 src={marcoImage}
