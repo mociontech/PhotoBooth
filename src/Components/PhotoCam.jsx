@@ -169,7 +169,7 @@ const PhotoCam = () => {
             <img
               src={capturedImage}
               alt="Captura"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transform scale-x-[-1]"
             />
             <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 flex justify-center w-1/2 max-w-md space-x-4">
               <div className="flex flex-col items-center">
