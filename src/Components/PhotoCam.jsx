@@ -145,12 +145,14 @@ const PhotoCam = () => {
         {isCameraReady && !capturedImage && (
           <>
             <div className="relative w-screen h-screen">
-              <Webcam
-                audio={false}
-                ref={webcamRef}
-                screenshotFormat="image/jpeg"
-                className="absolute top-0 left-0 w-screen h-screen object-cover transform scale-x-[-1]"
-              />
+              <div className="absolute top-0 left-0 w-screen h-screen transform scale-x-[-1]">
+                <Webcam
+                  audio={false}
+                  ref={webcamRef}
+                  screenshotFormat="image/jpeg"
+                  className="w-screen h-screen object-cover"
+                />
+              </div>
 
               <img
                 src={marcoImage}
@@ -188,6 +190,13 @@ const PhotoCam = () => {
               alt="Captura"
               className="w-full h-full object-cover"
             />
+            {!capturedImage && (
+              <img
+                src={marcoImage}
+                alt="Marco"
+                className="absolute top-0 left-0 w-full h-full object-cover"
+              />
+            )}
             <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 flex justify-center w-1/2 max-w-md space-x-4">
               <div className="flex flex-col items-center">
                 <img
