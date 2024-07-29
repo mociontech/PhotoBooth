@@ -26,6 +26,7 @@ const Register = () => {
   }, [navigate]);
 
   const handleRegister = async () => {
+    navigate("/");
     console.log("Correo:", email);
     console.log("Nombre:", name);
 
@@ -45,7 +46,6 @@ const Register = () => {
     const url = `https://mocionws.info/dbController.php?method=newRecordExclude&table=leads&name=${name}&email=${email}&uniqueId=${newHashId}&experience=1`;
     await axios.get(url);
 
-    navigate("/");
   };
 
   return (
