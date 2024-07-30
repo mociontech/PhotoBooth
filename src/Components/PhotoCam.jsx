@@ -15,8 +15,9 @@ import tres from "../images/3.png";
 import cuatro from "../images/4.png";
 import cinco from "../images/5.png";
 import preparate from "../images/¡PREPÁRATE PARA LA FOTO!.png";
-import loading from "../images/loading.gif";
+import loading from "../images/loading.gif"
 
+// Create a mapping from numbers to image sources
 const numberToImage = {
   0: cero,
   1: uno,
@@ -36,12 +37,14 @@ const PhotoCam = () => {
   const navigate = useNavigate();
   const cameraRef = useRef(null);
 
+  
+
   const uploadToFirebase = async (base64Image) => {
     try {
       const storageRef = ref(storage, `images/${Date.now()}.jpg`);
       await uploadString(storageRef, base64Image, "data_url");
       const url = await getDownloadURL(storageRef);
-      setImageUrl(url); // Se guarda la URL de la imagen en `imageUrl`
+      setImageUrl(url);
       console.log("Image URL:", url);
       return url;
     } catch (error) {
@@ -49,35 +52,19 @@ const PhotoCam = () => {
     }
   };
 
-  const invertImage = (base64Image) => {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.src = base64Image;
-
-      img.onload = () => {
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
-        resolve(canvas.toDataURL("image/jpeg"));
-      };
-
-      img.onerror = reject;
-    });
-  };
-
   const capture = useCallback(() => {
     if (cameraRef.current) {
-      html2canvas(cameraRef.current).then((canvas) => {
+      html2canvas(cameraRef.current, {
+        useCORS: true,
+      }).then((canvas) => {
+        // Convert the canvas to a data URL
         const finalImage = canvas.toDataURL("image/jpeg");
-        invertImage(finalImage).then((invertedImage) => {
-          setCapturedImage(invertedImage);
-          uploadToFirebase(invertedImage);
-        });
+        setCapturedImage(finalImage);
+        uploadToFirebase(finalImage);
       });
     }
   }, [cameraRef]);
+  
 
   useEffect(() => {
     let timerId;
@@ -115,8 +102,7 @@ const PhotoCam = () => {
     setIsCameraReady(false);
     setIsLoading(true);
     setTimeLeft(5);
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
+    navigator.mediaDevices.getUserMedia({ video: true })
       .then(() => setIsCameraReady(true))
       .catch(() => setIsCameraReady(false))
       .finally(() => setIsLoading(false));
@@ -133,7 +119,11 @@ const PhotoCam = () => {
           className="absolute inset-0 flex items-center justify-center bg-cover bg-center"
           style={{ backgroundImage: `url(${background})` }}
         >
-          <img src={loading} alt="Marco" className="w-28 h-28" />
+          <img
+                src={loading}
+                alt="Marco"
+                className="w-28 h-28"
+              />
         </div>
       )}
       <div
@@ -149,9 +139,8 @@ const PhotoCam = () => {
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
-                className="absolute top-0 left-0 w-screen h-screen object-cover transform scale-x-[-1]"
+                className="absolute top-0 left-0 w-screen h-screen object-cover"
               />
-
               <img
                 src={marcoImage}
                 alt="Marco"
