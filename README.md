@@ -52,3 +52,7 @@ npm install
 # Ejecutar en servidor local en el puerto 5173
 npm run dev
 ```
+
+# Resolución
+
+Esta webapp fue desarrollada de manera responsive unicamente para pantallas en modo retrato.
