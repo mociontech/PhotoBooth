@@ -35,7 +35,7 @@ Artes puntuales de cada una de las pantallas del flujo.
 
 # Tener en cuenta que para esto debe ser colaborador
 # o dueño del repositorio
-git clone https://github.com/mociontech/PhotoBoothRepublica.git
+git clone https://github.com/mociontech/PhotoBooth.git
 
 # Entra en el directorio
 cd photoboothrepublica
