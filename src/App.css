@@ -1,46 +1,405 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center;
+  position: relative;
+}
+
+.screen {
+  width: 100%;
+  height: 100%;
+  max-width: 1080px;
+  max-height: 1920px;
+  text-align: center;
+  font-size: xx-large;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* .active{
+  display: block;
+} */
+
+.screen-one {
+  background-image: url("/img/inicio.png");
+   overflow: 'hidden'; 
+   
+   
+}
+
+/* 
+.screen-two{
+  background-image: url('/img/fondo.png');
+}
+.screen-two-two{
+  background-image: url('/img/fondo.png');
+}
+.screen-three{
+  background-image: url('/img/silueta.png');
+}
+
+.screen-four{
+  background-image: url('/img/fondo.png');
+  
+} */
+
+.screen-five {
+  width: 100%;
+  height: 100%;
+  max-width: 1080px;
+  max-height: 1920px;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.screen-final {
+  width: "1080px";
+  height: "1920px";
+  background-image: url("/img/fondo.png"), url("/img/final2.png"),
+    url("/img/final3.png");
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.titulo {
+  margin: 10px auto;
+  text-align: center;
+  max-width: 100%;
+}
+
+.h1 {
+  width: 60%;
+  color: #fff;
+  text-align: center;
+  font-family: Gotham, sans-serif;
+  font-style: normal;
+  font-weight: 10;
+  line-height: normal;
+  text-transform: uppercase;
+  padding: 1px;
+}
+
+.screen-two {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.screen-two h1,
+.screen-four h1 {
+  z-index: 1;
+  width: 100%;
+  padding: 5%;
+  position: absolute;
+  top: 5%;
+}
+
+.webcamContainer {
+  position: absolute;
+  bottom: 1920px;
+}
+
+video,
+.appcanvas {
+  width: 1080px;
+  height: 1920px;
+  object-fit: cover;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  /* transform: scaleX(-1); */
+}
+
+.silueta {
+  position: absolute;
+  top: 10%;
+  left: 17%;
+}
+
+.silueta-wig {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  margin: 4.5% 3.5%;
+  height: 1750px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fondo-jugador img {
+  width: 1080px; /* Asegura que las imágenes llenen completamente el contenedor */
+}
+
+.silueta img {
+  width: 100%; /* Asegura que las imágenes llenen completamente el contenedor */
+  height: 100%;
+}
+
+.left {
+  /* width: 100%; */
+  /* margin: 0 10%; */
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  /* padding-top: 10%; */
+  align-items: center;
+}
+
+.left {
+  top: 8%;
+  left: 1%;
+  display: grid;
+  gap: 1px;
+  justify-content: center;
+}
+
+.menu {
+  height: 240px;
+  width: 240px;
+}
+
+.menu-white,
+.menu-transparent {
+  background: transparent;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  margin: 5% 0;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0.7;
+  
+}
+
+.menu-white:hover {
+  transform: translateX(30px);
+  opacity: 1;
+}
+
+.menu-transparent {
+  background-color: transparent !important;
+}
+
+/* .decade-2000{
+  background-image: url("/2000.png");
+}
+
+.decade-1990{
+  background-image: url("/1990.png");
+}
+
+.decade-1980{
+  background-image: url("/1980.png");
+}
+
+.decade-1970{
+  background-image: url("/1970.png");
+}
+ */
+.btn-back {
+  background-image: url("/regreso.png");
+}
+
+.btn-next {
+  position: absolute;
+  height: 12%;
+  width: 60%;
+  top: 82%;
+  left: 20%;
+}
+
+.background {
+  width: 1080px;
+  height: 1920px;
+  top: 0%;
+  z-index: 1;
+  position: absolute;
+  left: 0px;
+}
+
+@font-face {
+  font-family: 'TeleNeo';
+  src: url('/fonts/TeleNeo-UltraItalic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+
+
+.countdown {
+  font-family: 'TeleNeo', sans-serif;
+  font-size: 20em; /* Ajusta el tamaño del texto según sea necesario */
+  font-weight: bold;
+  color: #E10074; /* Color base del texto */
+  position: absolute; /* Posición absoluta para centrar el texto sobre el fondo */
+  top: 82%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.6),
+               0 0 10px rgba(255, 255, 255, 0.4),
+               0 0 15px rgba(255, 255, 255, 0.2),
+               0 0 20px rgba(255, 255, 255, 0.1);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.6),
+                 0 0 10px rgba(255, 255, 255, 0.4),
+                 0 0 15px rgba(255, 255, 255, 0.2),
+                 0 0 20px rgba(255, 255, 255, 0.1);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                 0 0 15px rgba(255, 255, 255, 0.6),
+                 0 0 20px rgba(255, 255, 255, 0.4),
+                 0 0 25px rgba(255, 255, 255, 0.2);
   }
+
+}
+.image {
+  position: absolute; /* Asegura que la imagen se pueda posicionar */
+  top: 0;
+  left: 0;
+  width: 95.5%;
+  margin: 4.5% 2.5%;
+  height: 95%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1; /* Ajusta el z-index según sea necesario */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.buttonFinish {
+  background-image: url("/botonfinal.png");
+  position: absolute;
+  z-index: 1;
+  width: 50%;
+  height: 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 2%;
+  bottom: 25%;
+  left: 23%;
+  border: solid;
 }
 
-.card {
-  padding: 2em;
+form {
+  margin-top: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
 }
 
-.read-the-docs {
-  color: #888;
-} */
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Estilos comunes para cada entrada del formulario */
+.form-input {
+  background-color: white; /* Color de fondo azul */
+  color: black; /* Color de texto blanco */
+  border: none; /* Sin bordes */
+  border-radius: 60px; /* Bordes redondeados */
+  padding: 30px 100px; /* Espaciado interior para hacerlo más grande */
+  margin: -70px 0; /* Margen entre las entradas del formulario */
+  width: 100%; /* Anchura del 80% con respecto a su contenedor */
+  max-width: 500px; /* Máximo ancho para evitar que sea demasiado grande en pantallas grandes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera para darle profundidad */
+  font-size: 46px; /* Tamaño de la fuente */
+  text-align: center; /* Texto centrado */
+  margin-top: 300px;
+}
+
+.form-name {
+  background-color: white; /* Color de fondo azul */
+  color: black; /* Color de texto blanco */
+  border: none; /* Sin bordes */
+  border-radius: 60px; /* Bordes redondeados */
+  padding: 30px 100px; /* Espaciado interior para hacerlo más grande */
+  margin: -70px 0; /* Margen entre las entradas del formulario */
+  width: 100%; /* Anchura del 80% con respecto a su contenedor */
+  max-width: 500px; /* Máximo ancho para evitar que sea demasiado grande en pantallas grandes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera para darle profundidad */
+  font-size: 46px; /* Tamaño de la fuente */
+  text-align: center; /* Texto centrado */
+  margin-top: 100px;
+}
+
+.form-input:focus {
+  outline: none; /* Elimina el contorno predeterminado al enfocar */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al enfocar */
+}
+
+/* Oculta el checkbox original */
+.custom-checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border: 1px solid #0000ff; /* Borde azul para el checkbox */
+  border-radius: 4px; /* Esquinas redondeadas para el checkbox */
+  background-color: #fff; /* Color de fondo blanco para el checkbox */
+  align-items: center;
+}
+
+/* Crea un pseudo-elemento para el ícono de check mark cuando el checkbox está marcado */
+.custom-checkbox:checked::before {
+  content: "✓"; /* Carácter Unicode para la marca de verificación */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* Centra el ícono perfectamente */
+  color: black; /* Color del check mark, aquí azul */
+  font-size: 40px; /* Tamaño del check mark */
+}
+
+/* Ajusta el tamaño y la posición del checkbox para que se vea correctamente */
+.custom-checkbox:checked {
+  background-color: #fff; /* Color de fondo blanco, puede ajustarse si es necesario */
+  border: 1px solid #0000ff; /* Mantén el borde azul, o cámbialo si lo deseas */
+}
+
+/* Estilos para el botón de envío */
+.submit-button1,
+.submit-button2 {
+  background-color: #f148a5; /* Color de fondo azul */
+  color: #ffffff; /* Color de texto blanco */
+  padding: 30px 100px; /* Espaciado interior para el botón */
+  border: none; /* Sin borde */
+  border-radius: 40px; /* Bordes redondeados */
+  cursor: pointer; /* Indica que es clickable */
+  font-size: 50px; /* Tamaño de la fuente */
+  text-align: center; /* Centra el texto dentro del botón */
+  display: block;
+  margin: 50px auto;
+  width: 600px;
+}
+
+.terminos {
+  color: #ffffff;
+  font-size: 38px;
+  margin-top: -30px;
+}

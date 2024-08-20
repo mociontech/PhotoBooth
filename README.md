@@ -1,58 +1,46 @@
-# Photobooth
+# Photobooth 📸
 
-Photobooth es una web app que por medio de la camara del dispositivo en uso, toma una foto del usuario y aplica un marco personalizado a esta foto.
+![Photobooth](https://img.shields.io/badge/-Photobooth-brightgreen?style=for-the-badge)
+![T-mobile](https://img.shields.io/badge/-T--mobile-magenta?style=for-the-badge)
 
-Para extender la experiencia del usuario, la foto tomada es enviada al correo suministrado por el usuario en la pantalla de registro.
 
-## Tecnologías
+Photobooth. Este proyecto está construido con Vite-React 💫
 
-<p align='center'>
-<img alt="React" src="https://img.shields.io/badge/-React-45b8d8?style=flat-square&logo=react&logoColor=white" />
-<img alt="JavaScript" src="https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
-<img alt="Firebase" src="https://img.shields.io/badge/-Firebase-DD2C00?style=flat-square&logo=firebase&logoColor=white" />
-<img alt="Vite" src="https://img.shields.io/badge/-Vite-646CFF?style=flat-square&logo=vite&logoColor=white" />
+## Características 🚀
 
-</p>
+- Tomar fotos instantáneas, animaciones con gif 📸
+- Guardar y compartir fotos 🌐
 
-## Flujo de la experiencia
+## Instalación 📥
 
-![Flujo de la experiencia](/public/flujoexp.png)
+1. Clona el repositorio
 
-## Brandeo
+    ```bash
+    git clone https://github.com/tu-usuario/photobooth.git
+    ```
 
-### Marco
+2. Navega al directorio del proyecto
 
-Marco personalizado en formato png.
+    ```bash
+    cd photobooth
+    ```
 
-### Artes
+3. Instala las dependencias
 
-Artes puntuales de cada una de las pantallas del flujo.
+    ```bash
+    npm install
+    ```
 
-## Instalación y ejecución
+## Uso 🚀
 
-```bash
-# Clonar el repositorio en local
+1. Corre la aplicación en modo de desarrollo
 
-# Tener en cuenta que para esto debe ser colaborador
-# o dueño del repositorio
-git clone https://github.com/mociontech/PhotoBooth.git
+    ```bash
+    npm run dev
+    ```
 
-# Entra en el directorio
-cd photoboothrepublica
+2. Abre tu navegador y navega a [http:/localhost:5173/](localhost:5173)
 
-# Crear una nueva rama para el nuevo desarrollo
-git branch [nombre del proyecto]
 
-# Trabajar sobre la nueva rama
-git checkout [nombre del proyecto]
 
-# Instalar dependencias del desarrollo
-npm install
 
-# Ejecutar en servidor local en el puerto 5173
-npm run dev
-```
-
-# Resolución
-
-Esta webapp fue desarrollada de manera responsive unicamente para pantallas en modo retrato.
