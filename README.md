@@ -1,46 +1,58 @@
-# Photobooth 📸
+# Photobooth
 
-![Photobooth](https://img.shields.io/badge/-Photobooth-brightgreen?style=for-the-badge)
-![T-mobile](https://img.shields.io/badge/-T--mobile-magenta?style=for-the-badge)
+Photobooth es una web app que por medio de la camara del dispositivo en uso, toma una foto del usuario y aplica un marco personalizado a esta foto.
 
+Para extender la experiencia del usuario, la foto tomada es enviada al correo suministrado por el usuario en la pantalla de registro.
 
-Photobooth. Este proyecto está construido con Vite-React 💫
+## Tecnologías
 
-## Características 🚀
+<p align='center'>
+<img alt="React" src="https://img.shields.io/badge/-React-45b8d8?style=flat-square&logo=react&logoColor=white" />
+<img alt="JavaScript" src="https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
+<img alt="Firebase" src="https://img.shields.io/badge/-Firebase-DD2C00?style=flat-square&logo=firebase&logoColor=white" />
+<img alt="Vite" src="https://img.shields.io/badge/-Vite-646CFF?style=flat-square&logo=vite&logoColor=white" />
 
-- Tomar fotos instantáneas, animaciones con gif 📸
-- Guardar y compartir fotos 🌐
+</p>
 
-## Instalación 📥
+## Flujo de la experiencia
 
-1. Clona el repositorio
+![Flujo de la experiencia](/public/flujoexp.png)
 
-    ```bash
-    git clone https://github.com/tu-usuario/photobooth.git
-    ```
+## Brandeo
 
-2. Navega al directorio del proyecto
+### Marco
 
-    ```bash
-    cd photobooth
-    ```
+Marco personalizado en formato png.
 
-3. Instala las dependencias
+### Artes
 
-    ```bash
-    npm install
-    ```
+Artes puntuales de cada una de las pantallas del flujo.
 
-## Uso 🚀
+## Instalación y ejecución
 
-1. Corre la aplicación en modo de desarrollo
+```bash
+# Clonar el repositorio en local
 
-    ```bash
-    npm run dev
-    ```
+# Tener en cuenta que para esto debe ser colaborador
+# o dueño del repositorio
+git clone https://github.com/mociontech/PhotoBooth.git
 
-2. Abre tu navegador y navega a [http:/localhost:5173/](localhost:5173)
+# Entra en el directorio
+cd photoboothrepublica
 
+# Crear una nueva rama para el nuevo desarrollo
+git branch [nombre del proyecto]
 
+# Trabajar sobre la nueva rama
+git checkout [nombre del proyecto]
 
+# Instalar dependencias del desarrollo
+npm install
 
+# Ejecutar en servidor local en el puerto 5173
+npm run dev
+```
+
+# Resolución
+
+Esta webapp fue desarrollada de manera responsive unicamente para pantallas en modo retrato.
