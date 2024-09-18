@@ -11,7 +11,7 @@ const Register = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const capturedImage = location.state?.image || "";
-  console.log("Received captured image:", capturedImage);
+  console.log("Received captured :", capturedImage);
 
   useEffect(() => {
     if (localStorage.getItem("isReloaded")) {
