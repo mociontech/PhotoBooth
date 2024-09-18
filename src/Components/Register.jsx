@@ -55,38 +55,38 @@ const Register = () => {
     >
       <form className="p-8 rounded-lg shadow-md w-full max-w-md mt-12">
         <div>
-          <div className="flex items-center border mb-4 w-full px-4 py-2 rounded-xl bg-white bg-opacity-10">
-            <img src={icononame} alt="Icono Nombre" className="w-5 h-5 mr-2" />
+          <div className="flex items-center ml-[-90px] border mb-8 w-[160%] h-[80px] px-4 py-2 rounded-xl bg-white bg-opacity-10">
+            <img src={icononame} alt="Icono Nombre" className="w-7 h-7 mr-2" />
             <input
               type="text"
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Nombre"
-              className={`w-full bg-transparent border-none focus:outline-none ${
+              className={`w-full text-4xl bg-transparent border-none focus:outline-none ${
                 name ? "text-white" : ""
               }`}
             />
           </div>
-          <div className="flex items-center border mb-4 w-full px-4 py-2 rounded-xl bg-white bg-opacity-10">
-            <img src={iconemail} alt="Icono Correo" className="w-5 h-5 mr-2" />
+          <div className="flex items-center ml-[-90px]  w-[160%] h-[80px] border mb-16  px-4 py-2 rounded-xl bg-white bg-opacity-10">
+            <img src={iconemail} alt="Icono Correo" className="w-7 h-7 mr-2" />
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Correo"
-              className={`w-full bg-transparent border-none focus:outline-none ${
+              className={`w-full text-4xl bg-transparent border-none focus:outline-none ${
                 email ? "text-white" : ""
               }`}
             />
           </div>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center w-full">
           <button
             type="button"
             onClick={handleRegister}
-            className="py-2 px-4 border border-transparent rounded-xl shadow-sm text-xl w-80 font-bold text-white bg-[#06ADBF]"
+            className="py-2 px-4  text-5xl border ml-[20px] border-transparent rounded-xl shadow-sm  w-[850px] h-[100px]  font-bold text-white bg-[#F5006F]"
           >
             Enviar
           </button>

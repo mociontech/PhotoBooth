@@ -16,6 +16,7 @@ import cuatro from "../images/4.png";
 import cinco from "../images/5.png";
 import preparate from "../images/¡PREPÁRATE PARA LA FOTO!.png";
 import loading from "../images/loading.gif"
+import Backloading from "../images/backloading.png"
 
 // Create a mapping from numbers to image sources
 const numberToImage = {
@@ -117,11 +118,11 @@ const PhotoCam = () => {
       {isLoading && (
         <div
           className="absolute inset-0 flex items-center justify-center bg-cover bg-center"
-          style={{ backgroundImage: `url(${background})` }}
+          style={{ backgroundImage: `url(${Backloading})` }}
         >
           <img
                 src={loading}
-                alt="Marco"
+                alt="marco"
                 className="w-28 h-28"
               />
         </div>
@@ -180,24 +181,24 @@ const PhotoCam = () => {
               alt="Captura"
               className="w-full h-full object-cover"
             />
-            <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 flex justify-center w-1/2 max-w-md space-x-4">
+            <div className="absolute top-[76%] left-1/2 transform -translate-x-1/2 flex justify-center w-1/2 max-w-md space-x-4">
               <div className="flex flex-col items-center">
                 <img
                   src={retake}
                   alt="Recap"
-                  className="w-16 cursor-pointer"
+                  className="w-32  top-[20%] cursor-pointer"
                   onClick={retakePhoto}
                 />
-                <span className="text-sm text-white">Repetir</span>
+                <span className="text-4xl mb-2 text-white">Repetir</span>
               </div>
               <div className="flex flex-col items-center">
                 <img
                   src={next}
                   alt="Recap"
-                  className="w-16 cursor-pointer"
+                  className="w-32 cursor-pointer"
                   onClick={handlerNext}
                 />
-                <span className="text-sm text-white">Siguiente</span>
+                <span className="text-4xl mb-2 text-white">Siguiente</span>
               </div>
             </div>
           </div>
