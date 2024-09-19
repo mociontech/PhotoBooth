@@ -123,13 +123,16 @@ const PhotoCam = () => {
 
   const handlerNext = () => {
     const storedImageUrl = localStorage.getItem("capturedImageUrl");
+    
+    // Asegúrate de que imageUrl o storedImageUrl esté disponible
     if (imageUrl || storedImageUrl) {
-      // Usa la URL almacenada si existe
+      // Navega solo si imageUrl o storedImageUrl tienen valor
       navigate("/register", { state: { image: imageUrl || storedImageUrl } });
     } else {
       console.error("La URL de la imagen aún no está disponible.");
     }
   };
+  
   
 
   return (
