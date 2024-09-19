@@ -28,7 +28,6 @@ const Register = () => {
 
   const handleRegister = async () => {
     //await register(name, email);
-    window.location.href = "https://landing-ochre-gamma.vercel.app/";
     console.log("Correo:", email);
     console.log("Nombre:", name);
     
@@ -42,11 +41,12 @@ const Register = () => {
       console.log("foto", capturedImage);
       console.log("Email sent");
     }
+    window.location.href = "https://landing-ochre-gamma.vercel.app/";
     
-    const newUniqueId = Math.random().toString(36).substring(7);
-    const newHashId = 'RD-Photo-Booth-' + newUniqueId;
-    const url = `https://mocionws.info/dbController.php?method=newRecordExclude&table=leads&name=${name}&email=${email}&uniqueId=${newHashId}&experience=1`;
-    await axios.get(url);
+    // const newUniqueId = Math.random().toString(36).substring(7);
+    // const newHashId = 'RD-Photo-Booth-' + newUniqueId;
+    // const url = `https://mocionws.info/dbController.php?method=newRecordExclude&table=leads&name=${name}&email=${email}&uniqueId=${newHashId}&experience=1`;
+    // await axios.get(url);
     
   };
   
