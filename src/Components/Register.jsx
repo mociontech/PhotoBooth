@@ -4,6 +4,7 @@ import axios from "axios";
 import registerback from "../images/Group 221.png";
 import icononame from "../images/Group 178.png";
 import iconemail from "../images/icon.png";
+//import { register } from "../firebase/db";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -26,10 +27,10 @@ const Register = () => {
   }, [navigate]);
 
   const handleRegister = async () => {
-    window.location.href = "https://landing-ochre-gamma.vercel.app/";
+    //await register(name, email);
     console.log("Correo:", email);
     console.log("Nombre:", name);
-
+    
     if (capturedImage) {
       await axios.post("https://devapi.evius.co/api/correos-mocion", {
         email: email,
@@ -40,17 +41,18 @@ const Register = () => {
       console.log("foto", capturedImage);
       console.log("Email sent");
     }
-
+    
     const newUniqueId = Math.random().toString(36).substring(7);
     const newHashId = 'RD-Photo-Booth-' + newUniqueId;
     const url = `https://mocionws.info/dbController.php?method=newRecordExclude&table=leads&name=${name}&email=${email}&uniqueId=${newHashId}&experience=1`;
     await axios.get(url);
-
+    
+    window.location.href = "https://landing-ochre-gamma.vercel.app/";
   };
-
+  
   return (
     <div
-      className="flex items-center justify-center min-h-screen bg-cover bg-center"
+      className=" flex items-center justify-center min-h-screen bg-cover bg-center"
       style={{ backgroundImage: `url(${registerback})` }}
     >
       <form className="p-8 rounded-lg shadow-md w-full max-w-md mt-12">

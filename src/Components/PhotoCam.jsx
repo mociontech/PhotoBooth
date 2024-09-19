@@ -15,8 +15,8 @@ import tres from "../images/3.png";
 import cuatro from "../images/4.png";
 import cinco from "../images/5.png";
 import preparate from "../images/¡PREPÁRATE PARA LA FOTO!.png";
-import loading from "../images/loading.gif"
-import Backloading from "../images/backloading.png"
+import loading from "../images/loading.gif";
+import Backloading from "../images/backloading.png";
 
 // Create a mapping from numbers to image sources
 const numberToImage = {
@@ -38,8 +38,6 @@ const PhotoCam = () => {
   const navigate = useNavigate();
   const cameraRef = useRef(null);
 
-  
-
   const uploadToFirebase = async (base64Image) => {
     try {
       const storageRef = ref(storage, `images/${Date.now()}.jpg`);
@@ -55,17 +53,20 @@ const PhotoCam = () => {
 
   const capture = useCallback(() => {
     if (cameraRef.current) {
+      const cameraElement = cameraRef.current;
+      const { width, height } = cameraElement.getBoundingClientRect(); // Obtén las dimensiones del contenedor
+  
       html2canvas(cameraRef.current, {
         useCORS: true,
+        width,  // Usa el ancho del contenedor
+        height, // Usa el alto del contenedor
       }).then((canvas) => {
-        // Convert the canvas to a data URL
         const finalImage = canvas.toDataURL("image/jpeg");
         setCapturedImage(finalImage);
         uploadToFirebase(finalImage);
       });
     }
   }, [cameraRef]);
-  
 
   useEffect(() => {
     let timerId;
@@ -103,7 +104,8 @@ const PhotoCam = () => {
     setIsCameraReady(false);
     setIsLoading(true);
     setTimeLeft(5);
-    navigator.mediaDevices.getUserMedia({ video: true })
+    navigator.mediaDevices
+      .getUserMedia({ video: true })
       .then(() => setIsCameraReady(true))
       .catch(() => setIsCameraReady(false))
       .finally(() => setIsLoading(false));
@@ -120,11 +122,7 @@ const PhotoCam = () => {
           className="absolute inset-0 flex items-center justify-center bg-cover bg-center"
           style={{ backgroundImage: `url(${Backloading})` }}
         >
-          <img
-                src={loading}
-                alt="marco"
-                className="w-28 h-28"
-              />
+          <img src={loading} alt="marco" className="w-28 h-28" />
         </div>
       )}
       <div
@@ -137,26 +135,28 @@ const PhotoCam = () => {
           <>
             <div className="relative w-screen h-screen">
               <div className="absolute top-0 left-0 w-screen h-screen transform scale-x-[-1]">
-
-              <Webcam
-                audio={false}
-                ref={webcamRef}
-                screenshotFormat="image/jpeg"
-                className="w-screen h-screen object-cover"
-              />
+                <Webcam
+                  audio={false}
+                  ref={webcamRef}
+                  screenshotFormat="image/jpeg"
+                  className="w-screen h-full  object-cover" // Mantiene la proporción de la imagen
+                  videoConstraints={{
+                    aspectRatio: 9 / 16,  // Esto mantiene una relación 1080x1920
+                  }}
+                />
               </div>
               <img
                 src={marcoImage}
                 alt="Marco"
-                className="absolute top-0 left-0 w-screen h-screen object-cover"
+                className="absolute top-0 left-0 w-screen h-screen object-cover overflow-hidden"
               />
               {timeLeft > 0 && (
-                <div className="absolute top-[100px] left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+                <div className="absolute top-[250px] left-1/2 transform -translate-x-1/2 flex flex-col items-center">
                   {timeLeft > 0 && (
                     <img
                       src={preparate}
                       alt="Preparación"
-                      className="w-64 h-auto"
+                      className="w-64 h-auto top-[100px]"
                     />
                   )}
                   <div className="flex">
@@ -175,11 +175,11 @@ const PhotoCam = () => {
           </>
         )}
         {capturedImage && (
-          <div className="relative flex flex-col items-center top-0 left-0 w-full h-full object-cover">
+          <div className="relative flex flex-col items-center top-0 left-0 w-screen h-screen object-cover">
             <img
               src={capturedImage}
               alt="Captura"
-              className="w-full h-full object-cover"
+              className="w-screen h-screen"
             />
             <div className="absolute top-[76%] left-1/2 transform -translate-x-1/2 flex justify-center w-1/2 max-w-md space-x-4">
               <div className="flex flex-col items-center">
