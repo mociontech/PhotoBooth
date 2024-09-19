@@ -6,9 +6,10 @@ import "./App.css";
 
 const AppRoutes = () => {
   const routes = useRoutes([
-    { path: "/", element: <Landingin /> },
+    { path: "/landing", element: <Landingin /> },
     { path: "/Photo", element: <PhotoCam /> },
     { path: "/register", element: <Register /> },
+    { path: "*", element: <Landingin />},
   ]);
   return routes;
 };
