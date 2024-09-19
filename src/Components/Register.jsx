@@ -28,6 +28,7 @@ const Register = () => {
 
   const handleRegister = async () => {
     //await register(name, email);
+    window.location.href = "https://landing-ochre-gamma.vercel.app/";
     console.log("Correo:", email);
     console.log("Nombre:", name);
     
@@ -47,7 +48,6 @@ const Register = () => {
     const url = `https://mocionws.info/dbController.php?method=newRecordExclude&table=leads&name=${name}&email=${email}&uniqueId=${newHashId}&experience=1`;
     await axios.get(url);
     
-    window.location.href = "https://landing-ochre-gamma.vercel.app/";
   };
   
   return (

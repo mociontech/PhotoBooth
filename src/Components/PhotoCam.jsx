@@ -134,7 +134,7 @@ const PhotoCam = () => {
         {isCameraReady && !capturedImage && (
           <>
             <div className="relative w-screen h-screen">
-              <div className="absolute top-0 left-0 w-screen h-screen transform scale-x-[-1]">
+              <div className="absolute top-0 left-0 w-screen h-screen transform scale-x-[-1] overflow-hidden">
                 <Webcam
                   audio={false}
                   ref={webcamRef}
@@ -175,7 +175,7 @@ const PhotoCam = () => {
           </>
         )}
         {capturedImage && (
-          <div className="relative flex flex-col items-center top-0 left-0 w-screen h-screen object-cover">
+          <div className="relative flex flex-col items-center top-0 left-0 w-screen h-screen object-cover overflow-hidden">
             <img
               src={capturedImage}
               alt="Captura"
