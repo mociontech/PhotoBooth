@@ -122,7 +122,7 @@ const PhotoCam = () => {
   };
 
   const handlerNext = () => {
-    navigate("/register", { state: { image: imageUrl } });
+    navigate("/register");
   };
 
   return (
@@ -202,12 +202,13 @@ const PhotoCam = () => {
                 <span className="text-4xl mb-2 text-white">Repetir</span>
               </div>
               <div className="flex flex-col items-center">
-                <img
-                  src={next}
-                  alt="Recap"
-                  className="w-32 cursor-pointer"
-                  onClick={handlerNext}
-                />
+              <img
+          src={next}
+          alt="Siguiente"
+          className={`w-32 cursor-pointer ${!imageUrl ? 'opacity-50' : ''}`} // Cambia la opacidad si no está listo
+          onClick={handlerNext}
+          disabled={!imageUrl} // Deshabilita si no hay URL
+        />
                 <span className="text-4xl mb-2 text-white">Siguiente</span>
               </div>
             </div>
