@@ -10,8 +10,8 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
-  const capturedImage = location.state?.image || "";
+  //const location = useLocation();
+  const capturedImage = localStorage.getItem("capturedImage") || "";
   console.log("Received captured :", capturedImage);
 
   useEffect(() => {

@@ -44,6 +44,7 @@ const PhotoCam = () => {
       await uploadString(storageRef, base64Image, "data_url");
       const url = await getDownloadURL(storageRef);
       setImageUrl(url);
+ 
       console.log("Image URL:", url);
       return url;
     } catch (error) {
@@ -62,12 +63,21 @@ const PhotoCam = () => {
         height, // Usa el alto del contenedor
       }).then((canvas) => {
         const finalImage = canvas.toDataURL("image/jpeg");
+        
+        // Guarda la imagen capturada en base64 en el estado local
         setCapturedImage(finalImage);
-        uploadToFirebase(finalImage);
+        
+        // Sube la imagen a Firebase y guarda la URL en localStorage
+        uploadToFirebase(finalImage).then((url) => {
+          // Guarda la URL en localStorage
+          localStorage.setItem("capturedImageUrl", url);
+          
+          // Navega a la siguiente página
+          navigate("/register");
+        });
       });
     }
-  }, [cameraRef]);
-
+  }, [cameraRef, navigate]);
   useEffect(() => {
     let timerId;
     if (isCameraReady && timeLeft === 0) {
