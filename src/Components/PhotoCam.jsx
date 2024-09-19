@@ -215,8 +215,8 @@ const PhotoCam = () => {
               <img
           src={next}
           alt="Siguiente"
-          className={`w-32 cursor-pointer ${!imageUrl ? 'opacity-50' : ''}`} // Cambia la opacidad si no está listo
-          onClick={handlerNext}
+          className={`w-32 cursor-pointer ${!imageUrl ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}// Cambia la opacidad si no está listo
+          onClick={imageUrl ? handlerNext : null}
           disabled={!imageUrl} // Deshabilita si no hay URL
         />
                 <span className="text-4xl mb-2 text-white">Siguiente</span>
