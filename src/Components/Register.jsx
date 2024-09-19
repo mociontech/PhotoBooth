@@ -26,7 +26,7 @@ const Register = () => {
   }, [navigate]);
 
   const handleRegister = async () => {
-    navigate("/");
+    window.location.href = "https://landing-ochre-gamma.vercel.app/";
     console.log("Correo:", email);
     console.log("Nombre:", name);
 
