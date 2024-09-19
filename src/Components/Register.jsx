@@ -42,7 +42,7 @@ const Register = () => {
       console.log("Email sent");
     }
     //window.location.href = "https://landing-ochre-gamma.vercel.app/";
-    navigate("/");
+    navigate("/thanks");
     
     // const newUniqueId = Math.random().toString(36).substring(7);
     // const newHashId = 'RD-Photo-Booth-' + newUniqueId;
