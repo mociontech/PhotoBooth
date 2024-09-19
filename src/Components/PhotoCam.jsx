@@ -72,8 +72,8 @@ const PhotoCam = () => {
           // Guarda la URL en localStorage
           localStorage.setItem("capturedImageUrl", url);
           
-          // Navega a la siguiente página
-          navigate("/register");
+          
+          
         });
       });
     }
