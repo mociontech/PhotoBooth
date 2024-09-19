@@ -122,8 +122,15 @@ const PhotoCam = () => {
   };
 
   const handlerNext = () => {
-    navigate("/register");
+    const storedImageUrl = localStorage.getItem("capturedImageUrl");
+    if (imageUrl || storedImageUrl) {
+      // Usa la URL almacenada si existe
+      navigate("/register", { state: { image: imageUrl || storedImageUrl } });
+    } else {
+      console.error("La URL de la imagen aún no está disponible.");
+    }
   };
+  
 
   return (
     <div className="relative w-screen h-screen">
