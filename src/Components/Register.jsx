@@ -1,18 +1,23 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import registerback from "../images/Group 221.png";
 import icononame from "../images/Group 178.png";
 import iconemail from "../images/icon.png";
-//import { register } from "../firebase/db";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const navigate = useNavigate();
-  //const location = useLocation();
-  const capturedImage = localStorage.getItem("capturedImage") || "";
-  console.log("Received captured :", capturedImage);
+  const [capturedImage, setCapturedImage] = useState("");
+
+  useEffect(() => {
+    // Obtén la URL de la imagen desde localStorage
+    const imageUrl = localStorage.getItem("capturedImageUrl");
+    if (imageUrl) {
+      setCapturedImage(imageUrl);
+    }
+  }, []);
 
   useEffect(() => {
     if (localStorage.getItem("isReloaded")) {
@@ -27,10 +32,9 @@ const Register = () => {
   }, [navigate]);
 
   const handleRegister = async () => {
-    //await register(name, email);
     console.log("Correo:", email);
     console.log("Nombre:", name);
-    
+
     if (capturedImage) {
       await axios.post("https://devapi.evius.co/api/correos-mocion", {
         email: email,
@@ -38,19 +42,12 @@ const Register = () => {
         subject: "PhotoOportunity",
         by: "PhotoOportunity RD",
       });
-      console.log("foto", capturedImage);
-      console.log("Email sent");
+      console.log("Foto enviada");
     }
-    //window.location.href = "https://landing-ochre-gamma.vercel.app/";
+
     navigate("/thanks");
-    
-    // const newUniqueId = Math.random().toString(36).substring(7);
-    // const newHashId = 'RD-Photo-Booth-' + newUniqueId;
-    // const url = `https://mocionws.info/dbController.php?method=newRecordExclude&table=leads&name=${name}&email=${email}&uniqueId=${newHashId}&experience=1`;
-    // await axios.get(url);
-    
   };
-  
+
   return (
     <div
       className=" flex items-center justify-center min-h-screen bg-cover bg-center"
