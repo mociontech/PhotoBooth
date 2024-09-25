@@ -142,6 +142,9 @@ const PhotoCam = () => {
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
                 className="w-screen h-screen object-cover"
+                videoConstraints={{
+                  aspectRatio: 9 / 16,  // Esto mantiene una relación 1080x1920
+                }}
               />
               </div>
               <img
