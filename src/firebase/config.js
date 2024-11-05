@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getStorage} from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB_n5tuGFKautOLaPbrSH3o5_iR_NsypW8",
-  authDomain: "photobooth-rd.firebaseapp.com",
-  projectId: "photobooth-rd",
-  storageBucket: "photobooth-rd.appspot.com",
-  messagingSenderId: "270392039923",
-  appId: "1:270392039923:web:8388c1b995e187112c9a86"
+  apiKey: "AIzaSyA0FCmV3qbCHIb8RNvDO5MsjvEMuCJkWpg",
+  authDomain: "photobooth-the-band.firebaseapp.com",
+  projectId: "photobooth-the-band",
+  storageBucket: "photobooth-the-band.appspot.com",
+  messagingSenderId: "182037074241",
+  appId: "1:182037074241:web:3a105e8c79f3003fe451c0"
 };
 
 // Initialize Firebase

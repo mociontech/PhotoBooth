@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import registerback from "../images/Group 221.png";
+import registerback from "../images/login.webp";
 import icononame from "../images/Group 178.png";
 import iconemail from "../images/icon.png";
+//import { register } from "../firebase/db";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ const Register = () => {
   }, [navigate]);
 
   const handleRegister = async () => {
-    window.location.href = "https://landing-ochre-gamma.vercel.app/";
+    //await register(name, email);
     console.log("Correo:", email);
     console.log("Nombre:", name);
 
@@ -34,23 +35,19 @@ const Register = () => {
       await axios.post("https://devapi.evius.co/api/correos-mocion", {
         email: email,
         html: `<img src="${capturedImage}" alt="Captura de cámara"/>`,
-        subject: "PhotoOportunity",
-        by: "PhotoOportunity RD",
+        subject: "PhotoBooth The Band",
+        by: "photoboothTheBand",
       });
       console.log("foto", capturedImage);
       console.log("Email sent");
     }
 
-    const newUniqueId = Math.random().toString(36).substring(7);
-    const newHashId = 'RD-Photo-Booth-' + newUniqueId;
-    const url = `https://mocionws.info/dbController.php?method=newRecordExclude&table=leads&name=${name}&email=${email}&uniqueId=${newHashId}&experience=1`;
-    await axios.get(url);
-
+    window.location.href = "https://landing-ochre-gamma.vercel.app/";
   };
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen bg-cover bg-center"
+      className=" flex items-center justify-center min-h-screen bg-cover bg-center"
       style={{ backgroundImage: `url(${registerback})` }}
     >
       <form className="p-8 rounded-lg shadow-md w-full max-w-md mt-12">
@@ -63,6 +60,7 @@ const Register = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Nombre"
+              autoComplete="off"
               className={`w-full text-4xl bg-transparent border-none focus:outline-none ${
                 name ? "text-white" : ""
               }`}
@@ -76,6 +74,7 @@ const Register = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Correo"
+              autoComplete="off"
               className={`w-full text-4xl bg-transparent border-none focus:outline-none ${
                 email ? "text-white" : ""
               }`}
@@ -86,7 +85,7 @@ const Register = () => {
           <button
             type="button"
             onClick={handleRegister}
-            className="py-2 px-4  text-5xl border ml-[20px] border-transparent rounded-xl shadow-sm  w-[850px] h-[100px]  font-bold text-white bg-[#F5006F]"
+            className="py-2 px-4  text-5xl border ml-[20px] border-transparent rounded-xl shadow-sm  w-[850px] h-[100px]  font-bold text-white bg-[#e74428]"
           >
             Enviar
           </button>

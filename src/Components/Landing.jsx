@@ -1,19 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import background from "../images/background.png";
+import background from "../images/welcome.webp";
 // import Logo from "../images/Group 2.png";
 // import takePic from "../images/Capa_1.png";
 // import rayo2 from "../images/rayo2.png";
 // import numbers from "../images/¡3,2,1..!.png";
 // import parrafo from "../images/parrafo.png";
-import button from "../images/Rectangle 4.png"
 //import camera from "../images/Cámara 2.png"
 
 const WelcomePage = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-   const handlerClic = () => {
-     navigate("/Photo");
-   };
+  const handlerClic = () => {
+    navigate("/Photo");
+  };
 
   return (
     <div className="relative min-h-screen">
@@ -40,9 +39,13 @@ const WelcomePage = () => {
           <img src={parrafo} alt="parrafo" />
         </div> */}
         <div className="text-center text-white text-xl font-bold">
-          <button className="relative w-[80%] mt-[700px]"  onClick={handlerClic} >
-          <img src={button} alt="button" className="w-full"  />
-          <span className="absolute inset-0 flex   text-6xl   items-center justify-center">Comenzar</span>
+          <button
+            className="flex justify-center items-center w-[500px] h-[50px] mt-[450px] py-[50px] bg-[#e9452b]"
+            onClick={handlerClic}
+          >
+            <span className=" flex text-6xl items-center justify-center">
+              Comenzar
+            </span>
           </button>
         </div>
       </div>
