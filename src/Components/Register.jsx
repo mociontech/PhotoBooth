@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import registerback from "../images/login.webp";
 import icononame from "../images/Group 178.png";
@@ -10,9 +10,15 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
-  const capturedImage = location.state?.image || "";
-  console.log("Received captured :", capturedImage);
+  const [capturedImage, setCapturedImage] = useState("");
+
+  useEffect(() => {
+    // Obtén la URL de la imagen desde localStorage
+    const imageUrl = localStorage.getItem("capturedImageUrl");
+    if (imageUrl) {
+      setCapturedImage(imageUrl);
+    }
+  }, []);
 
   useEffect(() => {
     if (localStorage.getItem("isReloaded")) {
@@ -27,7 +33,6 @@ const Register = () => {
   }, [navigate]);
 
   const handleRegister = async () => {
-    //await register(name, email);
     console.log("Correo:", email);
     console.log("Nombre:", name);
 
@@ -38,11 +43,10 @@ const Register = () => {
         subject: "PhotoBooth The Band",
         by: "photoboothTheBand",
       });
-      console.log("foto", capturedImage);
-      console.log("Email sent");
+      console.log("Foto enviada");
     }
 
-    window.location.href = "https://landing-ochre-gamma.vercel.app/";
+    navigate("/thanks");
   };
 
   return (

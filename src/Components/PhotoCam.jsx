@@ -15,7 +15,7 @@ import cuatro from "../images/4.png";
 import cinco from "../images/5.png";
 import preparate from "../images/¡PREPÁRATE PARA LA FOTO!.png";
 import loading from "../images/loading.gif";
-import Backloading from "../images/backloading.webp";
+import Backloading from "../images/backloading.png";
 
 // Create a mapping from numbers to image sources
 const numberToImage = {
@@ -43,6 +43,8 @@ const PhotoCam = () => {
       await uploadString(storageRef, base64Image, "data_url");
       const url = await getDownloadURL(storageRef);
       setImageUrl(url);
+ 
+      console.log("Image URL:", url);
       return url;
     } catch (error) {
       console.error("Error uploading image to Firebase", error);
@@ -52,20 +54,29 @@ const PhotoCam = () => {
   const capture = useCallback(() => {
     if (cameraRef.current) {
       const cameraElement = cameraRef.current;
-
-      // Usar html2canvas para capturar toda el área (webcam + marco)
-      html2canvas(cameraElement, {
+      const { width, height } = cameraElement.getBoundingClientRect(); // Obtén las dimensiones del contenedor
+  
+      html2canvas(cameraRef.current, {
         useCORS: true,
-        scale: 1, // Asegura que la imagen se capture en la misma escala
-        logging: false, // Desactiva los logs para mayor rendimiento
+        width,  // Usa el ancho del contenedor
+        height, // Usa el alto del contenedor
       }).then((canvas) => {
-        const finalImage = canvas.toDataURL("image/jpeg", 1.0);
+        const finalImage = canvas.toDataURL("image/jpeg");
+        
+        // Guarda la imagen capturada en base64 en el estado local
         setCapturedImage(finalImage);
-        uploadToFirebase(finalImage); // Sube la imagen a Firebase
+        
+        // Sube la imagen a Firebase y guarda la URL en localStorage
+        uploadToFirebase(finalImage).then((url) => {
+          // Guarda la URL en localStorage
+          localStorage.setItem("capturedImageUrl", url);
+          
+          
+          
+        });
       });
     }
-  }, [cameraRef]);
-
+  }, [cameraRef, navigate]);
   useEffect(() => {
     let timerId;
     if (isCameraReady && timeLeft === 0) {
@@ -110,8 +121,18 @@ const PhotoCam = () => {
   };
 
   const handlerNext = () => {
-    navigate("/register", { state: { image: imageUrl } });
+    const storedImageUrl = localStorage.getItem("capturedImageUrl");
+    
+    // Asegúrate de que imageUrl o storedImageUrl esté disponible
+    if (imageUrl || storedImageUrl) {
+      // Navega solo si imageUrl o storedImageUrl tienen valor
+      navigate("/register", { state: { image: imageUrl || storedImageUrl } });
+    } else {
+      console.error("La URL de la imagen aún no está disponible.");
+    }
   };
+  
+  
 
   return (
     <div className="relative w-screen h-screen">
@@ -120,7 +141,7 @@ const PhotoCam = () => {
           className="absolute inset-0 flex items-center justify-center bg-cover bg-center"
           style={{ backgroundImage: `url(${Backloading})` }}
         >
-          <img src={loading} alt="marco" className="w-[350px] h-auto" />
+          <img src={loading} alt="marco" className="w-28 h-28" />
         </div>
       )}
       <div
@@ -131,15 +152,13 @@ const PhotoCam = () => {
       >
         {isCameraReady && !capturedImage && (
           <>
-            <div className="relative w-[1080px] h-[1920px] mx-auto">
-              {" "}
-              {/* Tamaño exacto del contenedor */}
-              <div className="absolute top-0 left-0 w-full h-full transform scale-x-[-1]">
+            <div className="relative w-screen h-screen">
+              <div className="absolute top-0 left-0 w-screen h-screen transform scale-x-[-1] overflow-hidden">
                 <Webcam
                   audio={false}
                   ref={webcamRef}
                   screenshotFormat="image/jpeg"
-                  className="w-full h-full object-cover" // Asegura que la webcam se ajuste
+                  className="w-screen h-full  object-cover" // Mantiene la proporción de la imagen
                   videoConstraints={{
                     aspectRatio: 9 / 16,  // Esto mantiene una relación 1080x1920
                   }}
@@ -148,10 +167,10 @@ const PhotoCam = () => {
               <img
                 src={marcoImage}
                 alt="Marco"
-                className="absolute  w-screen h-screen object-cover overflow-hidden"
+                className="absolute top-0 left-0 w-screen h-screen object-cover overflow-hidden"
               />
               {timeLeft > 0 && (
-                <div className="absolute top-[200px] left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+                <div className="absolute top-[250px] left-1/2 transform -translate-x-1/2 flex flex-col items-center">
                   {timeLeft > 0 && (
                     <img
                       src={preparate}
@@ -175,11 +194,11 @@ const PhotoCam = () => {
           </>
         )}
         {capturedImage && (
-          <div className="relative">
+          <div className="relative flex flex-col items-center top-0 left-0 w-screen h-screen object-cover overflow-hidden">
             <img
               src={capturedImage}
               alt="Captura"
-             
+              className="w-screen h-screen"
             />
             <div className="absolute bottom-[170px] left-[200px] transform -translate-x-1/2 flex justify-center items-center w-1/2 max-w-md space-x-4">
               <div className="absolute flex flex-col items-center">
@@ -191,13 +210,14 @@ const PhotoCam = () => {
                 />
                 <span className="text-4xl mb-2 text-white">Repetir</span>
               </div>
-              <div className="absolute left-[800px] flex flex-col items-center">
-                <img
-                  src={next}
-                  alt="Recap"
-                  className="w-32 cursor-pointer"
-                  onClick={handlerNext}
-                />
+              <div className="flex flex-col items-center">
+              <img
+          src={next}
+          alt="Siguiente"
+          className={`w-32 cursor-pointer ${!imageUrl ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}// Cambia la opacidad si no está listo
+          onClick={imageUrl ? handlerNext : null}
+          disabled={!imageUrl} // Deshabilita si no hay URL
+        />
                 <span className="text-4xl mb-2 text-white">Siguiente</span>
               </div>
             </div>
