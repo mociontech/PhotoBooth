@@ -15,7 +15,7 @@ import cuatro from "../images/4.png";
 import cinco from "../images/5.png";
 import preparate from "../images/¡PREPÁRATE PARA LA FOTO!.png";
 import loading from "../images/loading.gif";
-import Backloading from "../images/backloading.webp";
+import Backloading from "../images/backloading.png";
 
 // Create a mapping from numbers to image sources
 const numberToImage = {
@@ -45,6 +45,8 @@ const PhotoCam = () => {
       setImageUrl(url);
 
       console.log("Image URL:", url);
+ 
+      console.log("Image URL:", url);
       return url;
     } catch (error) {
       console.error("Error uploading image to Firebase", error);
@@ -55,21 +57,24 @@ const PhotoCam = () => {
     if (cameraRef.current) {
       const cameraElement = cameraRef.current;
       const { width, height } = cameraElement.getBoundingClientRect(); // Obtén las dimensiones del contenedor
-
+  
       html2canvas(cameraRef.current, {
         useCORS: true,
-        width, // Usa el ancho del contenedor
-        height, // Usa el alto del contenedor
+        scale: 1, // Asegura que la imagen se capture en la misma escala
+        logging: false, // Desactiva los logs para mayor rendimiento
       }).then((canvas) => {
         const finalImage = canvas.toDataURL("image/jpeg");
-
+        
         // Guarda la imagen capturada en base64 en el estado local
         setCapturedImage(finalImage);
-
+        
         // Sube la imagen a Firebase y guarda la URL en localStorage
         uploadToFirebase(finalImage).then((url) => {
           // Guarda la URL en localStorage
           localStorage.setItem("capturedImageUrl", url);
+          
+          
+          
         });
       });
     }
@@ -119,7 +124,7 @@ const PhotoCam = () => {
 
   const handlerNext = () => {
     const storedImageUrl = localStorage.getItem("capturedImageUrl");
-
+    
     // Asegúrate de que imageUrl o storedImageUrl esté disponible
     if (imageUrl || storedImageUrl) {
       // Navega solo si imageUrl o storedImageUrl tienen valor
@@ -128,6 +133,8 @@ const PhotoCam = () => {
       console.error("La URL de la imagen aún no está disponible.");
     }
   };
+  
+  
 
   return (
     <div className="relative w-screen h-screen">
@@ -136,7 +143,7 @@ const PhotoCam = () => {
           className="absolute inset-0 flex items-center justify-center bg-cover bg-center"
           style={{ backgroundImage: `url(${Backloading})` }}
         >
-          <img src={loading} alt="marco" className="w-[300px] h-auto" />
+          <img src={loading} alt="marco" className="w-[350px] h-auto" />
         </div>
       )}
       <div
@@ -208,14 +215,9 @@ const PhotoCam = () => {
               <div className="absolute left-[800px] flex flex-col items-center">
                 <img
                   src={next}
-                  alt="Siguiente"
-                  className={`w-32 cursor-pointer ${
-                    !imageUrl
-                      ? "opacity-50 cursor-not-allowed"
-                      : "cursor-pointer"
-                  }`} // Cambia la opacidad si no está listo
-                  onClick={imageUrl ? handlerNext : null}
-                  disabled={!imageUrl} // Deshabilita si no hay URL
+                  alt="Recap"
+                  className="w-32 cursor-pointer"
+                  onClick={handlerNext}
                 />
                 <span className="text-4xl mb-2 text-white">Siguiente</span>
               </div>
