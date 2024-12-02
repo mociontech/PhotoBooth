@@ -38,7 +38,7 @@ Artes puntuales de cada una de las pantallas del flujo.
 git clone https://github.com/mociontech/PhotoBooth.git
 
 # Entra en el directorio
-cd photoboothrepublica
+cd photobooth
 
 # Crear una nueva rama para el nuevo desarrollo
 git branch [nombre del proyecto]

@@ -1,17 +1,16 @@
 import { useRoutes, BrowserRouter } from "react-router-dom";
-import Register from "./Components/Register";
-import PhotoCam from "./Components/PhotoCam";
-import Landingin from "./Components/Landing";
-import "./App.css";
+import WelcomePage from "./pages/Landing";
+import PhotoCam from "./pages/PhotoCam";
+import Register from "./pages/Register";
 
-const AppRoutes = () => {
+function AppRoutes() {
   const routes = useRoutes([
-    { path: "/", element: <Landingin /> },
-    { path: "/Photo", element: <PhotoCam /> },
+    { path: "/", element: <WelcomePage /> },
+    { path: "/PhotoCam", element: <PhotoCam /> },
     { path: "/register", element: <Register /> },
   ]);
   return routes;
-};
+}
 
 function App() {
   return (
