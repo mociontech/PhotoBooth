@@ -4,11 +4,11 @@ import Camera from "../Components/Camera";
 import { useImage } from "../hooks/useImage";
 
 export default function PhotoCam() {
-  const [photo, setPhoto] = useState();
+  const [photo, setPhoto] = useState<string | null>("");
   const { setImage } = useImage();
   const navigate = useNavigate();
 
-  function handlePhotoTaken(photo) {
+  function handlePhotoTaken(photo: string) {
     setPhoto(photo);
     setImage(photo);
   }

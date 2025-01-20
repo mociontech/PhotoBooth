@@ -3,20 +3,28 @@
 import { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
 
+interface Props {
+  countdownStart: number;
+  frameSrc: string;
+  horizontal?: boolean;
+  onlyPhoto?: boolean;
+  onPhotoTaken: (photo: string) => void;
+}
+
 export default function Camera({
   countdownStart = 5,
   frameSrc,
   horizontal = false,
   onlyPhoto = false,
   onPhotoTaken,
-}) {
-  const webcamRef = useRef(null);
-  const [isPhotoTaken, setIsPhotoTaken] = useState(null);
+}: Props) {
+  const webcamRef = useRef<Webcam | null>(null);
+  const [isPhotoTaken, setIsPhotoTaken] = useState<boolean | null>(null);
   const [countdown, setCountdown] = useState(countdownStart);
   const [isCapturing, setIsCapturing] = useState(true);
 
   useEffect(() => {
-    let timer;
+    let timer: NodeJS.Timeout;
     if (countdown > 0) {
       timer = setTimeout(() => setCountdown((prev) => prev - 1), 1000);
     } else if (countdown === 0) {
@@ -42,49 +50,51 @@ export default function Camera({
         finalCanvas.width = window.innerWidth;
         finalCanvas.height = window.innerHeight;
 
-        ctx.save();
-        if (!horizontal) {
-          ctx.rotate((-90 * Math.PI) / 180);
-          ctx.scale(-1, 1);
-          ctx.drawImage(
-            webcamImage,
-            0,
-            0,
-            finalCanvas.height,
-            finalCanvas.width
-          );
-        } else {
-          ctx.scale(-1, 1);
-          ctx.drawImage(
-            webcamImage,
-            -1920,
-            0,
-            finalCanvas.width,
-            finalCanvas.height
-          );
-        }
-        ctx.restore();
-
-        if (frameSrc && !onlyPhoto) {
-          const frameImage = new Image();
-          frameImage.src = frameSrc;
-          frameImage.onload = () => {
+        if (ctx) {
+          ctx.save();
+          if (!horizontal) {
+            ctx.rotate((-90 * Math.PI) / 180);
+            ctx.scale(-1, 1);
             ctx.drawImage(
-              frameImage,
+              webcamImage,
               0,
+              0,
+              finalCanvas.height,
+              finalCanvas.width
+            );
+          } else {
+            ctx.scale(-1, 1);
+            ctx.drawImage(
+              webcamImage,
+              -1920,
               0,
               finalCanvas.width,
               finalCanvas.height
             );
+          }
+          ctx.restore();
 
+          if (frameSrc && !onlyPhoto) {
+            const frameImage = new Image();
+            frameImage.src = frameSrc;
+            frameImage.onload = () => {
+              ctx.drawImage(
+                frameImage,
+                0,
+                0,
+                finalCanvas.width,
+                finalCanvas.height
+              );
+
+              const imageData = finalCanvas.toDataURL("image/png");
+              setIsPhotoTaken(true);
+              onPhotoTaken?.(imageData);
+            };
+          } else {
             const imageData = finalCanvas.toDataURL("image/png");
             setIsPhotoTaken(true);
             onPhotoTaken?.(imageData);
-          };
-        } else {
-          const imageData = finalCanvas.toDataURL("image/png");
-          setIsPhotoTaken(true);
-          onPhotoTaken?.(imageData);
+          }
         }
       };
     }

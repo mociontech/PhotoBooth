@@ -33,7 +33,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-export async function register(name, correo) {
+export async function register(name: string, correo: string) {
   try {
     const isExisting = await getDoc(doc(db, "DBStandMocion", correo));
     if (isExisting.data()) {
@@ -50,7 +50,7 @@ export async function register(name, correo) {
   }
 }
 
-export async function uploadToFirebase(base64Image) {
+export async function uploadToFirebase(base64Image: string) {
   try {
     const storageRef = ref(storage, `images/${Date.now()}.jpg`);
     await uploadString(storageRef, base64Image, "data_url");
