@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Camera from "../Components/Camera";
+import Camera from "../Components/ResponsiveCamera";
 import { useImage } from "../hooks/useImage";
 
 export default function PhotoCam() {
@@ -18,18 +18,16 @@ export default function PhotoCam() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-screen h-screen">
       {!photo ? (
         <Camera
           countdownStart={5}
           frameSrc={"/marco.png"}
           onPhotoTaken={handlePhotoTaken}
-          // horizontal
-          // onlyPhoto
         />
       ) : (
         <div>
-          <img src={photo} alt="" />
+          <img src={photo} alt="" width={2000} />
           <button
             className="absolute w-[130px] bottom-[70px] left-[130px]"
             onClick={() => {
