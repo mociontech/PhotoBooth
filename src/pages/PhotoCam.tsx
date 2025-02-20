@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Camera from "../Components/ResponsiveCamera";
+import { Camera } from "components-mocion";
 import { useImage } from "../hooks/useImage";
 
 export default function PhotoCam() {
@@ -21,6 +21,8 @@ export default function PhotoCam() {
     <div className="relative w-screen h-screen">
       {!photo ? (
         <Camera
+          aspectRatio={"cover"}
+          facingMode="environment"
           countdownStart={5}
           frameSrc={"/marco.png"}
           onPhotoTaken={handlePhotoTaken}

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^1.7.2",
+    "components-mocion": "^0.0.4",
     "firebase": "^10.13.2",
     "html2canvas": "^1.4.1",
     "react": "^18.3.1",
