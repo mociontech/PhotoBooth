@@ -23,8 +23,8 @@ export default function Register() {
       await axios.post("https://devapi.evius.co/api/correos-mocion", {
         email: email,
         html: `<img src="${imageUrl}" alt="Captura de cámara"/>`,
-        subject: "PhotoBooth The Band",
-        by: "photoboothTheBand",
+        subject: "PhotoBooth The Claro",
+        by: "photoboot",
       });
       console.log("Foto enviada");
       navigate("/");
