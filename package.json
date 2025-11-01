@@ -1,0 +1,40 @@
+{
+  "name": "face-swap",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "body-parser": "^1.20.3",
+    "components-mocion": "^0.0.4",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "firebase": "^10.14.0",
+    "formik": "^2.4.6",
+    "next": "15.1.6",
+    "node-printer": "^1.0.4",
+    "pdf-printer": "^0.0.3",
+    "pdf-to-printer": "^5.6.0",
+    "pdfkit": "^0.15.0",
+    "qrcode.react": "^4.0.1",
+    "react": "^18",
+    "react-camera-pro": "^1.4.0",
+    "react-dom": "^18",
+    "react-qr-code": "^2.0.18",
+    "react-webcam": "^7.2.0",
+    "sharp": "^0.33.5",
+    "yup": "^1.6.1",
+    "zustand": "^5.0.0-rc.2"
+  },
+  "devDependencies": {
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "5.7.3"
+  }
+}
