@@ -2,8 +2,9 @@
 
 import { useSearchParams, useRouter } from 'next/navigation';
 import QRCode from 'react-qr-code';
+import { Suspense } from 'react';
 
-export default function QRPage() {
+function QRContent() {
   const params = useSearchParams();
   const router = useRouter();
   const url = params.get('url') || '';
@@ -44,15 +45,15 @@ export default function QRPage() {
         <div
           className="
             absolute inset-x-0 
-            bottom-[7vh]                              /* ⬅️ baja/sube aquí */
-            pb-[env(safe-area-inset-bottom)]          /* respeta notch */
+            bottom-[7vh]                              
+            pb-[env(safe-area-inset-bottom)]          
             flex justify-center
           "
         >
           <button
             onClick={() => router.push('/')}
             className="
-              w-[min(85vw,420px)]                     /* ancho responsivo */
+              w-[min(85vw,420px)]                     
               h-14 md:h-16
               rounded-full bg-[#C9961A] text-white
               text-[20px] md:text-[22px] lg:text-[24px]
@@ -65,5 +66,17 @@ export default function QRPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+export default function QRPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-white text-xl">Cargando...</div>
+      </div>
+    }>
+      <QRContent />
+    </Suspense>
   );
 }
