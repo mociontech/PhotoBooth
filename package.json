@@ -1,39 +1,40 @@
 {
-  "name": "photooportunity",
+  "name": "face-swap",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
-    "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "axios": "^1.7.2",
+    "axios": "^1.7.7",
+    "body-parser": "^1.20.3",
     "components-mocion": "^0.0.4",
-    "firebase": "^10.13.2",
-    "html2canvas": "^1.4.1",
-    "react": "^18.3.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "firebase": "^10.14.0",
+    "formik": "^2.4.6",
+    "next": "15.1.6",
+    "node-printer": "^1.0.4",
+    "pdf-printer": "^0.0.3",
+    "pdf-to-printer": "^5.6.0",
+    "pdfkit": "^0.15.0",
+    "qrcode.react": "^4.0.1",
+    "react": "^18",
     "react-camera-pro": "^1.4.0",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.25.1",
+    "react-dom": "^18",
+    "react-qr-code": "^2.0.18",
     "react-webcam": "^7.2.0",
-    "use-react-screenshot": "^4.0.0",
-    "zustand": "^5.0.1"
+    "sharp": "^0.33.5",
+    "yup": "^1.6.1",
+    "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react": "^7.34.3",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.14",
-    "typescript": "^5.7.3",
-    "vite": "^5.3.4"
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "5.7.3"
   }
 }
