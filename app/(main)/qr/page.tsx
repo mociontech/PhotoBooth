@@ -2,6 +2,7 @@
 
 import { useSearchParams, useRouter } from 'next/navigation';
 import QRCode from 'react-qr-code';
+import React from 'react';
 
 export default function QRPage() {
   const params = useSearchParams();
