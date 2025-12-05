@@ -42,10 +42,10 @@ export default function QrClient() {
       <button
         onClick={() => router.push('/')}
         className="
-          absolute left-1/2 bottom-64 -translate-x-1/2
-          px-24 h-22 md:px-20 md:h-16
-          rounded-full bg-[#C9961A] text-white
-          text-lg md:text-xl font-semibold
+          absolute left-1/2 bottom-64  -translate-x-1/2
+          px-60 h-28 md:px-20 md:h-20
+          rounded-full bg-[#C1A56C] text-black
+          text-lg md:text-4xl font-semibold
           shadow-lg hover:brightness-110 active:scale-95 transition
         "
       >

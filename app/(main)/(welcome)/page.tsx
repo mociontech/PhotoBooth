@@ -22,13 +22,13 @@ export default function Welcome() {
       />
 
       <section className="relative z-10 min-h-screen">
-        {/* Botón más alto, texto grande y color #C9961A; posición más arriba */}
-        <div className="absolute inset-x-0 bottom-[22vh] px-8 pb-[env(safe-area-inset-bottom)] flex justify-center">
+        {/* Botón más alto, texto grande y color #C1A56C; posición más arriba */}
+        <div className="absolute inset-x-0 bottom-[22vh] px-4 pb-[env(safe-area-inset-bottom)] flex justify-center">
           <button
             onClick={() => router.push('/camera')}
             className="w-full max-w-2xl h-[72px] rounded-full
-                       bg-[#C9961A] text-white text-4xl md:text-5xl font-extrabold
-                       tracking-tight shadow-lg shadow-[rgba(201,150,26,0.35)]
+                       bg-[#C1A56C;] text-black text-4xl md:text-5xl font-extrabold
+                       tracking-tight shadow-lg shadow-[rgba(167, 141, 77, 0.35)]
                        hover:brightness-110 active:scale-95 transition"
             aria-label="Ir a la cámara"
           >

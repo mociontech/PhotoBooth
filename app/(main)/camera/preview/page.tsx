@@ -1,3 +1,4 @@
+// app/(main)/camera/preview/page.tsx  (o donde tengas este componente)
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -46,18 +47,23 @@ export default function CameraPreview() {
   };
 
   return (
-    <main className="relative min-h-screen text-white">
-      {/* FONDO */}
+    <main className="relative min-h-screen text-white overflow-hidden">
+      {/* Fondo con el arte final */}
       <img
-        src="/assets/fonfoooooooooo.png"
+        src="/assets/preview-fondo.png"
         alt=""
         className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
       />
       <div className="absolute inset-0 bg-black/25 pointer-events-none" />
 
-      {/* CONTENIDO */}
+      {/* Contenido */}
       <section className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6">
-        <div className="w-full max-w-[560px] flex flex-col items-center">
+        <div
+          className="
+            w-full max-w-[560px] flex flex-col items-center
+            mt-[14vh] md:mt-[12vh]   /* ⬅️ baja el bloque foto+botones */
+          "
+        >
           {dataUrl && (
             <img
               src={dataUrl}
@@ -81,7 +87,7 @@ export default function CameraPreview() {
             <button
               onClick={handleNext}
               disabled={uploading}
-              className="px-6 h-12 rounded-full bg-[#C9961A] text-white text-base md:text-lg font-semibold shadow-md
+              className="px-6 h-12 rounded-full bg-[#C1A56C] text-black text-base md:text-lg font-semibold shadow-md
                          hover:brightness-110 active:scale-95 transition disabled:opacity-60"
             >
               {uploading ? 'Subiendo…' : 'Siguiente →'}
@@ -92,3 +98,4 @@ export default function CameraPreview() {
     </main>
   );
 }
+
